@@ -81,8 +81,6 @@ def qc_A(radar,swp=0):
     return radar, gatefilter
 
 #%%
-
-
 def attenuation_correction(radar,band='S'):
     """
     Attenuation correction by pyart
@@ -112,7 +110,7 @@ def attenuation_correction(radar,band='S'):
 
 def qc_B_C(radar):
     """
-    Attenuation Correction Schemes
+    Attenuation Correction Schemes using Φdp
     currently use pyart module "correct.calculate_attenuation_zphi()"
 
     Args:
@@ -148,10 +146,14 @@ def qc_D(radar,bias=0.):
 def qc_all(radar):
     radar, gatefilter = qc_A(radar)
     radar = qc_B_C(radar)
-    radar = qc_D(radar,bias=-0.2)
+    print("Enter Zdr bias:")
+    bias = input()
+    radar = qc_D(radar,bias=bias)
     return radar, gatefilter
 
 radar, gatefilter = qc_all(radar)
+
+
 # %% check data (PPI) ===================================================
 # ### ~ plot begins ~
 # fig = plt.figure(facecolor='white', figsize=(12, 10))
