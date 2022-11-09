@@ -146,12 +146,9 @@ def qc_D(radar,bias=0.):
 def qc_all(radar):
     radar, gatefilter = qc_A(radar)
     radar = qc_B_C(radar)
-    print("Enter Zdr bias:")
-    bias = input()
+    bias = input("Enter Zdr bias:")
     radar = qc_D(radar,bias=bias)
     return radar, gatefilter
-
-radar, gatefilter = qc_all(radar)
 
 
 # %% check data (PPI) ===================================================
